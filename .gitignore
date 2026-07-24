@@ -1,0 +1,18 @@
+# Local runtime and deployment artifacts
+server.log
+*.log
+.tmp_*
+__pycache__/
+*.py[cod]
+
+# Credentials and private deployment material
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_*
+
+# Local operating-system files
+.DS_Store
+Thumbs.db

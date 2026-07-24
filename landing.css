@@ -1,0 +1,38 @@
+/* Landing pages — Explorer 引流落地页布局
+ * 复用 framework.css 的颜色变量与设计系统，仅补充容器与内容布局类。 */
+
+.landing-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 104px 32px;
+  border-top: 1px solid var(--line);
+}
+.landing-section:first-of-type { border-top: 0; }
+
+.landing-lead {
+  color: var(--ink);
+  font: 500 clamp(1.5rem, 3vw, 2.3rem)/1.35 var(--serif);
+  letter-spacing: -.02em;
+  margin: 0 0 26px;
+  max-width: 820px;
+}
+.landing-section > p {
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0;
+}
+.landing-note {
+  color: var(--muted);
+  font-size: .88rem;
+  margin-top: 16px;
+}
+
+.landing-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0 30px;
+  margin-top: 44px;
+}
+.landing-cards .invite-card { margin-top: 0; }
+
+.landing-cta .invite-list { margin-top: 28px; }

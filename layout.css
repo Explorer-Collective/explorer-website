@@ -1,0 +1,64 @@
+/* 全局排版上限
+ * 设计基准宽度：1240px。当视口超过该宽度时，所有基于 vw 的尺寸
+ * 固定为在 1240px 下计算出的值，防止超宽屏下字号/间距过度放大。
+ * 由 app.js 在 window.innerWidth >= 1240 时给 <html> 添加 .layout-capped。
+ */
+:root {
+  --layout-cap: 1240px;
+  --content-cap: 1176px;
+}
+
+/* 统一使用 viewport 计算的内边距，保证内容区不超过 content-cap */
+.belief,
+.participate,
+.radar-practice {
+  padding-left: max(32px, calc((100vw - var(--content-cap)) / 2));
+  padding-right: max(32px, calc((100vw - var(--content-cap)) / 2));
+}
+
+/* 超宽屏锁定：核心容器居中且不超过 layout-cap */
+html.layout-capped .site-header,
+html.layout-capped .hero,
+html.layout-capped .exploring,
+html.layout-capped .output-preview,
+html.layout-capped .platform,
+html.layout-capped .closing {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--layout-cap);
+}
+
+/* belief / participate / radar-practice 背景仍需铺满，所以只固定内容宽度 */
+html.layout-capped .belief,
+html.layout-capped .participate,
+html.layout-capped .radar-practice {
+  padding-left: calc((100% - var(--content-cap)) / 2);
+  padding-right: calc((100% - var(--content-cap)) / 2);
+}
+
+/* 锁定 vw-based 字号为 1240px 基准值，避免继续随 viewport 放大 */
+html.layout-capped .hero h1 { font-size: 7.1rem; }
+html.layout-capped .belief h2 { font-size: 2.95rem; }
+html.layout-capped .platform h2,
+html.layout-capped .exploring h2,
+html.layout-capped .participate h2 { font-size: 3.9rem; }
+html.layout-capped .output-preview h2 { font-size: 3.25rem; }
+html.layout-capped .radar-intro h2,
+html.layout-capped .team h2 { font-size: 3.7rem; }
+html.layout-capped .radar-sheet h3 { font-size: 2.3rem; }
+html.layout-capped .closing h2 { font-size: 3.25rem; }
+
+/* belief 在超宽屏下保持两列平衡，防止左侧标题撑爆列宽 */
+html.layout-capped .belief-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+}
+
+/* 移动端回退：不使用上限逻辑，保持原有紧凑响应式 */
+@media (max-width: 720px) {
+  html.layout-capped .belief,
+  html.layout-capped .participate,
+  html.layout-capped .radar-practice {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

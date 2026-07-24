@@ -1,0 +1,148 @@
+.practice-identity {
+  border-top: 1px solid var(--ink);
+  padding-top: 12px;
+}
+
+.practice-closing-slogan {
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.practice-closing-slogan .eyebrow {
+  margin-bottom: 10px;
+}
+
+.practice-closing-slogan h2 {
+  color: #474743;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.78;
+}
+
+.practice-closing-slogan h2 span {
+  white-space: nowrap;
+}
+
+.practice-product-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(56px, 7vw, 96px);
+  grid-template-columns: minmax(0, .44fr) minmax(0, .56fr);
+}
+
+.practice-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.practice-identity h3 {
+  font: 600 2.8rem/1.18 var(--serif);
+  letter-spacing: -0.045em;
+  margin: 20px 0 0;
+}
+
+.project-alias {
+  color: var(--muted);
+  font: 1.1rem/1.4 var(--serif);
+  letter-spacing: 0.03em;
+  margin: 2px 0 28px;
+}
+
+.practice-facts {
+  border-top: 1px solid var(--line);
+  margin: 54px 0 0;
+}
+
+.practice-facts div {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 96px 1fr;
+  padding: 13px 0;
+}
+
+.practice-facts dt {
+  color: var(--green);
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+}
+
+.practice-facts dd {
+  color: #44443f;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.practice-description-panel {
+  color: #474743;
+  container-type: inline-size;
+  border-top: 1px solid var(--line);
+  margin-top: 0;
+  padding-top: 18px;
+}
+
+.practice-capability { color: var(--ink); font: 500 clamp(1.55rem, 2.7vw, 2.35rem)/1.28 var(--serif); letter-spacing: -.03em; margin: 0 0 22px; }
+
+.practice-copy-core {
+  margin: 0 0 14px;
+}
+
+.copy-line {
+  display: block;
+}
+
+[data-product="description"] .practice-copy-core:first-child .copy-line:first-child {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.practice-copy-detail p {
+  margin: 0 0 14px;
+}
+
+.practice-description-panel .text-link {
+  border-top: 1px solid var(--line);
+  display: block;
+  margin-top: 42px;
+  padding-top: 20px;
+}
+
+.future-section-anchor {
+  display: block;
+  height: 0;
+}
+
+@container (max-width: 420px) {
+  .practice-copy-detail {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .practice-closing-slogan h2 span {
+    display: block;
+  }
+
+  .practice-product-grid {
+    display: block;
+  }
+
+  .practice-facts {
+    margin-top: 28px;
+  }
+
+  .practice-description-panel {
+    margin-top: 42px;
+  }
+}
+
+@media (max-width: 360px) {
+  .practice-closing-slogan h2 {
+    font-size: 1.12rem;
+  }
+}
