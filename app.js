@@ -132,10 +132,12 @@
     const previous = bySelector('[data-product-control="previous"]');
     const next = bySelector('[data-product-control="next"]');
     const controls = bySelector('.product-controls');
-    const onlyProduct = products.length < 2;
-    previous.disabled = onlyProduct;
-    next.disabled = onlyProduct;
-    controls.hidden = onlyProduct;
+    if (previous && next && controls) {
+      const onlyProduct = products.length < 2;
+      previous.disabled = onlyProduct;
+      next.disabled = onlyProduct;
+      controls.hidden = onlyProduct;
+    }
   };
 
   const moveProduct = direction => {
@@ -145,32 +147,36 @@
     renderProduct();
   };
 
-  bySelector('[data-product-control="previous"]').addEventListener('click', () => moveProduct(-1));
-  bySelector('[data-product-control="next"]').addEventListener('click', () => moveProduct(1));
+  const previousBtn = bySelector('[data-product-control="previous"]');
+  const nextBtn = bySelector('[data-product-control="next"]');
+  if (previousBtn) previousBtn.addEventListener('click', () => moveProduct(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => moveProduct(1));
   renderProduct();
 
   const form = bySelector('#question-form');
   const status = bySelector('#form-status');
   const contextField = bySelector('#context');
   const contextCount = bySelector('#context-count');
-  const updateContextCount = () => {
-    contextCount.textContent = `${contextField.value.length} / 4000`;
-  };
-  contextField.addEventListener('input', updateContextCount);
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    const name = form.elements.name.value.trim();
-    const contact = form.elements.contact.value.trim();
-    const summary = form.elements.summary.value.trim();
-    const context = form.elements.context.value.trim();
-    if (!name || !contact || !summary || !context) {
-      status.textContent = '请先完成称呼、联系方式、探索内容和问题详情四个必填项。';
-      return;
-    }
-    status.textContent = '已提交。你的内容不会被发送、保存或同步。';
-    form.reset();
-    updateContextCount();
-  });
+  if (form && status && contextField && contextCount) {
+    const updateContextCount = () => {
+      contextCount.textContent = `${contextField.value.length} / 4000`;
+    };
+    contextField.addEventListener('input', updateContextCount);
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const name = form.elements.name.value.trim();
+      const contact = form.elements.contact.value.trim();
+      const summary = form.elements.summary.value.trim();
+      const context = form.elements.context.value.trim();
+      if (!name || !contact || !summary || !context) {
+        status.textContent = '请先完成称呼、联系方式、探索内容和问题详情四个必填项。';
+        return;
+      }
+      status.textContent = '已提交。你的内容不会被发送、保存或同步。';
+      form.reset();
+      updateContextCount();
+    });
+  }
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let activeScrollFrame = 0;
